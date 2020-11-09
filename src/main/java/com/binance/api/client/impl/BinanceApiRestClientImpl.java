@@ -8,6 +8,8 @@ import com.binance.api.client.domain.account.request.*;
 import com.binance.api.client.domain.general.Asset;
 import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.market.*;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 
 import java.util.List;
@@ -222,5 +224,13 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
   @Override
   public void closeUserDataStream(String listenKey) {
     executeSync(binanceApiService.closeAliveUserDataStream(listenKey));
+  }
+
+  
+  // Close and remove all idle connections in the pool
+  @Override
+  public void shutdown() {
+	  OkHttpClient okHttpClient = BinanceApiServiceGenerator.getSharedClient();
+	  okHttpClient.connectionPool().evictAll();
   }
 }

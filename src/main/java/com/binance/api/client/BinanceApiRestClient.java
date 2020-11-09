@@ -295,4 +295,10 @@ public interface BinanceApiRestClient {
    * @param listenKey listen key that identifies a data stream
    */
   void closeUserDataStream(String listenKey);
+  
+  /**
+   * Call to allow the client to shutdown cleanly instead of 
+   * waiting for connection timeouts.
+   */
+  void shutdown();
 }
