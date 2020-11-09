@@ -296,6 +296,7 @@ public interface BinanceApiRestClient {
    */
   void closeUserDataStream(String listenKey);
   
+  
   /**
    * Call to allow the client to shutdown cleanly instead of 
    * waiting for connection timeouts.
